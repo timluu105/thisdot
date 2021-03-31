@@ -1,9 +1,34 @@
 import React from "react";
-import SearchIcon from "@material-ui/icons/Search";
+import UserLists from "./components/UserLists";
+import SearchBar from "./components/SearchBar";
+import { Paper, Box } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 import "./App.css";
 
+const useStyles = makeStyles((theme) => ({
+	root: {
+		flexGrow: 1,
+	},
+	paper: {
+		padding: theme.spacing(2),
+		margin: "auto",
+		maxWidth: 700,
+	},
+}));
+
 const App = () => {
-	return <div className="App">Hey man excited</div>;
+	const classes = useStyles();
+
+	return (
+		<div className={classes.root}>
+			<Paper className={classes.paper}>
+				<Box m={12}>
+					<SearchBar />
+					<UserLists />
+				</Box>
+			</Paper>
+		</div>
+	);
 };
 
 export default App;

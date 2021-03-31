@@ -5,11 +5,12 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import ContextProvider from "./context";
 import { ThemeProvider } from "@material-ui/core";
+import theme from "./utils/constants/theme";
 
 const Main = () => {
 	return (
 		<ContextProvider>
-			<ThemeProvider>
+			<ThemeProvider theme={theme}>
 				<App />
 			</ThemeProvider>
 		</ContextProvider>
