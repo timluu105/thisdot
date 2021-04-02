@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import UserLists from "./components/UserLists";
 import SearchBar from "./components/SearchBar";
 import { Box } from "@material-ui/core";
@@ -11,18 +11,22 @@ const useStyles = makeStyles((theme) => ({
 		padding: theme.spacing(2),
 		marginTop: theme.spacing(5),
 		margin: "auto",
-		maxWidth: 800,
+		maxWidth: 1000,
 	},
 }));
 
 const App = () => {
 	const classes = useStyles();
+	const [searchBtn, setSearchBtn] = useState(false);
 
 	return (
 		<div className={classes.root}>
 			<Box m={1}>
-				<SearchBar />
-				<UserLists />
+				{searchBtn ? (
+					<UserLists setSearchBtn={setSearchBtn} />
+				) : (
+					<SearchBar setSearchBtn={setSearchBtn} />
+				)}
 			</Box>
 		</div>
 	);

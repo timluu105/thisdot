@@ -19,15 +19,16 @@ const useStyles = makeStyles({
 	},
 });
 
-const SearchBar = () => {
+const SearchBar = ({ setSearchBtn }) => {
 	const classes = useStyles();
 	const [searchQuery, setSearchValue] = useState("");
 	const {
-		data: { page, count },
+		data: { page },
 		methods: { getUsers },
 	} = useUser();
 
 	const handleSubmit = () => {
+		setSearchBtn(true);
 		getUsers({
 			q: searchQuery,
 			page,
@@ -44,7 +45,7 @@ const SearchBar = () => {
 			<Typography variant="h4" component="h5">
 				{" "}
 				<SearchIcon />
-				Search more than <u>{count}</u> users
+				Search users on GitHub
 			</Typography>
 
 			<Grid className={classes.searchBar} container spacing={2}>

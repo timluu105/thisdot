@@ -3,12 +3,12 @@ import produce from "immer";
 import {
 	GET_USERS_SUCCESS,
 	GET_USERS_FAILURE,
-	GET_NEXT_PAGE,
-	GET_PREV_PAGE,
+	GET_USER_SUCCESS,
+	GET_USER_FAILURE,
 } from "./actions";
 import { initialState } from "./context";
 
-export default (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
 	const { type, payload } = action;
 
 	return produce(state, (draft) => {
@@ -17,6 +17,8 @@ export default (state = initialState, action) => {
 				draft.users = payload.data.items;
 				draft.count = payload.data.total_count;
 				draft.searchQuery = payload.searchQuery;
+				draft.page = payload.page;
+				draft.userDetails = [];
 				break;
 			case GET_USERS_FAILURE:
 				draft.users = [];
@@ -24,13 +26,16 @@ export default (state = initialState, action) => {
 				draft.page = 1;
 				draft.searchQuery = "";
 				break;
-			case GET_NEXT_PAGE:
-				draft.page += 1;
+			case GET_USER_SUCCESS:
+				draft.userDetails.push(payload.data);
 				break;
-			case GET_PREV_PAGE:
-				draft.page -= 1;
+			case GET_USER_FAILURE:
+				draft.userDetails = [];
+				break;
 			default:
 				break;
 		}
 	});
 };
+
+export default reducer;

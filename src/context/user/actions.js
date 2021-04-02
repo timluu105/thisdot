@@ -2,8 +2,8 @@ import * as API from "./api";
 
 export const GET_USERS_SUCCESS = "GET_USERS_SUCCESS";
 export const GET_USERS_FAILURE = "GET_USERS_FAILURE";
-export const GET_NEXT_PAGE = "GET_NEXT_PAGE";
-export const GET_PREV_PAGE = "GET_PREV_PAGE";
+export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
+export const GET_USER_FAILURE = "GET_USER_FAILURE";
 
 export const getUsers = (dispatch) => async (params) => {
 	try {
@@ -14,6 +14,7 @@ export const getUsers = (dispatch) => async (params) => {
 			payload: {
 				...data,
 				searchQuery: params.q,
+				page: params.page,
 			},
 		});
 	} catch {
@@ -23,14 +24,17 @@ export const getUsers = (dispatch) => async (params) => {
 	}
 };
 
-export const getNextPage = (dispatch) => (async) => {
-	dispatch({
-		type: GET_NEXT_PAGE,
-	});
-};
+export const getUser = (dispatch) => async (params) => {
+	try {
+		const data = await API.getUser(params);
 
-export const getPrevPage = (dispatch) => (async) => {
-	dispatch({
-		type: GET_PREV_PAGE,
-	});
+		dispatch({
+			type: GET_USER_SUCCESS,
+			payload: data,
+		});
+	} catch {
+		dispatch({
+			type: GET_USER_FAILURE,
+		});
+	}
 };

@@ -1,7 +1,7 @@
 import React, { useReducer, useContext } from "react";
 import Context, { initialState } from "./context";
 import reducer from "./reducer";
-import { getUsers } from "./actions";
+import { getUsers, getUser } from "./actions";
 
 const UserContextProvider = ({ children, initialContext = initialState }) => {
 	const [state, dispatch] = useReducer(reducer, initialContext);
@@ -12,6 +12,7 @@ const UserContextProvider = ({ children, initialContext = initialState }) => {
 				data: state,
 				methods: {
 					getUsers: getUsers(dispatch),
+					getUser: getUser(dispatch),
 				},
 			}}
 		>

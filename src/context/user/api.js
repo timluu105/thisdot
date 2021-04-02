@@ -1,8 +1,14 @@
-import Axios from "../../utils/axios";
+import apiCall from "../../utils/apiCall";
 
 export const getUsers = async (params) =>
-	Axios({
+	apiCall({
 		method: "GET",
-		url: `search/users`,
+		url: "search/users",
 		params,
+	});
+
+export const getUser = async (userId) =>
+	apiCall({
+		method: "GET",
+		url: `users/${userId}`,
 	});

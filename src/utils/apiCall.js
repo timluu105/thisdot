@@ -6,7 +6,7 @@ const Axios = axios.create({
 	})(),
 });
 
-export default (data) => {
+const apiCall = (data) => {
 	return Axios({
 		...data,
 		headers: {
@@ -14,3 +14,5 @@ export default (data) => {
 		},
 	});
 };
+
+export default apiCall;
