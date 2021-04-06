@@ -67,7 +67,7 @@ const UserLists = ({ setSearchBtn }) => {
 						<div
 							className={classes.div}
 							onClick={() => {
-								window.location = `https://api.github.com/users/${user.login}`;
+								window.location = `https://github.com/${user.login}`;
 							}}
 							key={index}
 						>
