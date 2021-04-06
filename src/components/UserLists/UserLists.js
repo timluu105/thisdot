@@ -33,7 +33,7 @@ const UserLists = ({ setSearchBtn }) => {
 	} = useUser();
 
 	useEffect(() => {
-		if (users && users.length !== 0) {
+		if (count !== 0 && users && users.length !== 0) {
 			for (let index = 0; index < 10; index++) {
 				if (users[index].login !== "") {
 					getUser(users[index].login);
